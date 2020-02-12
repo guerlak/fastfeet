@@ -5,6 +5,7 @@ const yup = require('yup');
 class UserController {
     async store(req, res) {
         const schema = yup.object().shape({
+            name: yup.string().required(),
             email: yup
                 .string()
                 .email()
@@ -29,6 +30,14 @@ class UserController {
         user = await User.create(req.body);
 
         return res.json(user);
+    }
+
+    async index(req, res) {
+        const users = await User.findAll({
+            attributes: ['id', 'name', 'email']
+        });
+
+        return res.json(users);
     }
 }
 

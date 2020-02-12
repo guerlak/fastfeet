@@ -1,5 +1,4 @@
 import Sequelize, { Model } from 'sequelize';
-
 import bcrypt from 'bcryptjs';
 
 class User extends Model {
@@ -18,7 +17,6 @@ class User extends Model {
         this.addHook('beforeCreate', async user => {
             user.password_hash = await bcrypt.hash(user.password, 8);
         });
-
         return this;
     }
 
