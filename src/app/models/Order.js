@@ -1,11 +1,11 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Deliver extends Model {
+class Order extends Model {
     static init(sequelize) {
         super.init(
             {
                 name: Sequelize.STRING,
-                email: Sequelize.STRING
+                path: Sequelize.STRING
             },
             {
                 sequelize
@@ -13,10 +13,6 @@ class Deliver extends Model {
         );
         return this;
     }
-
-    static associate(models) {
-        this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
-    }
 }
 
-export default Deliver;
+export default Order;

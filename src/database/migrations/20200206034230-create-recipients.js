@@ -7,27 +7,27 @@ module.exports = {
                 autoIncrement: true,
                 primaryKey: true
             },
-            nome: {
+            name: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            rua: {
+            street: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            numero: {
+            number: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
-            complemento: {
+            complement: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            estado: {
+            state: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            cidade: {
+            city: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
@@ -46,5 +46,5 @@ module.exports = {
         });
     },
 
-    down: queryInterface => queryInterface.dropTable('recipient')
+    down: queryInterface => queryInterface.dropTable('recipients')
 };

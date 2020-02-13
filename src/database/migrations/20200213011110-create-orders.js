@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('deliveries', {
+        return queryInterface.createTable('orders', {
             id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
@@ -16,12 +16,34 @@ module.exports = {
                 allowNull: false,
                 unique: true
             },
-            avatar_id: {
+            signature_id: {
                 type: Sequelize.INTEGER,
                 references: { model: 'files', key: 'id' },
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL',
                 allowNull: true
+            },
+            deliveryman_id: {
+                type: Sequelize.INTEGER,
+                references: { model: 'delivery_mans', key: 'id' },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false
+            },
+            recipient_id: {
+                type: Sequelize.INTEGER,
+                references: { model: 'recipients', key: 'id' },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false
+            },
+            start_date: {
+                type: Sequelize.DATE,
+                allowNull: false
+            },
+            end_date: {
+                type: Sequelize.DATE,
+                allowNull: false
             },
             created_at: {
                 type: Sequelize.DATE,
@@ -35,6 +57,6 @@ module.exports = {
     },
 
     down: queryInterface => {
-        return queryInterface.dropTable('deliveries');
+        return queryInterface.dropTable('orders');
     }
 };
