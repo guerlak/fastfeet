@@ -2,7 +2,9 @@ import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import RecipientController from './app/controllers/RecipientController';
-import DeliveryController from './app/controllers/DeliveryManController';
+import DeliveryManController from './app/controllers/DeliveryManController';
+import DeliveryController from './app/controllers/DeliveryController';
+import StartEndController from './app/controllers/StartEndDeliveryController';
 import authMiddleware from './middlewares/auth';
 
 const routes = new Router();
@@ -15,10 +17,26 @@ routes.post('/users', UserController.store);
 
 routes.use(authMiddleware);
 
-routes.post('/recipients', RecipientController.store);
+// routes.post('/recipient', RecipientController.index);
+routes.post('/recipient', RecipientController.store);
+// routes.post('/recipient', RecipientController.update);
+// routes.post('/recipient', RecipientController.delete);
+
+routes.get('/delivery-man', DeliveryManController.index);
+routes.post('/delivery-man', DeliveryManController.store);
+routes.put('/delivery-man', DeliveryManController.update);
+routes.delete('/delivery-man/:id', DeliveryManController.delete);
+
 routes.get('/deliveries', DeliveryController.index);
 routes.post('/deliveries', DeliveryController.store);
 routes.put('/deliveries', DeliveryController.update);
-routes.delete('/deliveries', DeliveryController.delete);
+routes.delete('/deliveries/:id', DeliveryController.delete);
+routes.get(
+    '/deliveryman/:id/deliveries',
+    DeliveryController.indexByDeliveryMan
+);
+
+routes.post('/deliveries/start', StartEndController.start);
+routes.post('/deliveries/end', StartEndController.end);
 
 export default routes;
