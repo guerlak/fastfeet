@@ -33,8 +33,6 @@ class StartEndDeliveryController {
             }
         });
 
-        console.log(numberOfOrdersDay);
-
         if (numberOfOrdersDay > 5) {
             return res.status(400).json({
                 error: 'Only five Orders can be started only per day'
